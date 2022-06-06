@@ -59,8 +59,8 @@ class App extends Component {
   }
 
   resetTurn(){
-    this.setState(prevTurn => (
-      {choiceOne: null, choiceTwo: null, turns: prevTurn + 1}
+    this.setState(prevState => (
+      {choiceOne: null, choiceTwo: null, turns: prevState.turns + 1}
     ));
   }
 
