@@ -61,7 +61,7 @@ class App extends Component {
 
   resetTurn(){
     this.setState(prevState => (
-      {turns: prevState.turns + 1, choiceOne: null, choiceTwo: null, disabled: false}
+      {turns: prevState.turns + 1, choiceOne: null, choiceTwo: null}
     ));
   }
 
