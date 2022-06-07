@@ -25,8 +25,8 @@ class App extends Component {
     .map(cards => ({...cards, id: Math.random()})); //varje spel pjäs har ett unikt id.
 
     //Fisher-Yates Shuffle, 2D tillämpad
-    for (let i = shuffledCards.length/2 - 1; i > 0; i--) {
-      for (let j = shuffledCards.length/2 - 1; j > 0; j--) {
+    for (let i = shuffledCards.length - 1; i > 0; i--) {
+      for (let j = shuffledCards.length - 1; j > 0; j--) {
         let x = Math.floor(Math.random() * (i + 1));
         let y = Math.floor(Math.random() * (j + 1));
 
