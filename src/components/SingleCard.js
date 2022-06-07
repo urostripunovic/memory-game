@@ -14,7 +14,7 @@ class SingleCard extends Component {
     render() {
         return(
             <div className='card'>
-              <div> 
+              <div className={this.props.flipped ? "flipped" : ""}> 
                 <img className='front' src={this.props.card.src} alt='card front' />
                 <img 
                     className='back' 

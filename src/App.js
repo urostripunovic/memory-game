@@ -13,7 +13,6 @@ class App extends Component {
       { "src": "/img/shield-1.png", matched: false },
       { "src": "/img/sword-1.png", matched: false },
       ]};
-
     this.shuffleCards = this.shuffleCards.bind(this);
     this.handleChoice = this.handleChoice.bind(this);
     this.resetTurn = this.resetTurn.bind(this);
@@ -36,11 +35,15 @@ class App extends Component {
       }
     }
 
-    this.setState({cards : shuffledCards, turns : 0});
+    this.setState({cards : shuffledCards, turns : 0, choiceOne: null, choiceTwo: null});
   }
   
   handleChoice(card) {
     !this.state.choiceOne ? this.setState({choiceOne: card}) : this.setState({choiceTwo: card});
+  }
+
+  componentDidMount() {
+    this.shuffleCards();
   }
 
   componentDidUpdate() {
@@ -51,16 +54,14 @@ class App extends Component {
         ));
         this.resetTurn();
       } else {
-        console.log("fel par");
-        this.resetTurn();
+        setTimeout(() => this.resetTurn(), 1000); //Ge spelare en chans att komma ihåg va det var för kort
       }
-      console.log(this.state.cards);
     }
   }
 
   resetTurn(){
     this.setState(prevState => (
-      {choiceOne: null, choiceTwo: null, turns: prevState.turns + 1}
+      {turns: prevState.turns + 1, choiceOne: null, choiceTwo: null, disabled: false}
     ));
   }
 
@@ -75,10 +76,12 @@ class App extends Component {
             <SingleCard 
               card={card} 
               key={card.id} 
-              handleChoice={this.handleChoice}  
+              handleChoice={this.handleChoice}
+              flipped={card === this.state.choiceOne || card === this.state.choiceTwo || card.matched}
               />
           ))}
         </div>
+        <p>Turns: {this.state.turns}</p>
       </div>
     );
   }
